@@ -7,9 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="http://0w0.tv/ReOF" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="387,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="label1" Content="Label" HorizontalAlignment="Left" Margin="10,111,0,0" VerticalAlignment="Top" Height="199" Width="497"/>
-        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="135,9,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
+        <Label x:Name="label1" Content="省略済URL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="24" Width="120"/>
+        <Label x:Name="label2" Content="省略前URL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,67,0,0" Height="24" Width="120"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="10,39,0,0" TextWrapping="Wrap" Text="http://0w0.tv/ReOF" VerticalAlignment="Top" Width="417"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="10,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="417"/>
+        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="432,38,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
+        <Button x:Name="button2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="432,95,0,0"/>
+        <TextBox x:Name="EgsResBox" HorizontalAlignment="Left" Height="186" Margin="10,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="497" IsReadOnly="True" BorderThickness="0"/>
+        <CheckBox x:Name="checkBox1" Content="クリップボード監視" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="382,15,0,0" Checked="checkBox1_Checked"/>
     </Grid>
 </Window>

@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Text.RegularExpressions;
 
 namespace EgsApp
 {
@@ -19,6 +20,18 @@ namespace EgsApp
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void checkBox1_Checked(object sender, RoutedEventArgs e)
+        {
+            if ((bool)checkBox1.IsChecked)
+            {
+                // Clipboard 監視する
+            }
+            else
+            {
+                // Clipboard 監視しない
+            }
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -46,13 +59,14 @@ namespace EgsApp
                 //EgsDataをJSONパース
                 var result = new DataContractJsonSerializer(typeof(RootObject));
                 using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(EgsData)))
-                    {
+                {
                     //出力
                     var data = (RootObject)result.ReadObject(ms);
                     Console.WriteLine(data.shorten);
                     Console.WriteLine(data.original);
-                    label1.Content  = "短縮URL：" + data.shorten   + "\r\n";
-                    label1.Content += "展開URL：" + data.original  + "\r\n";
+                    EgsResBox.Text = label1.Content + "：" + data.shorten + "\r\n";
+                    EgsResBox.Text += label2.Content + "：" + data.original + "\r\n";
+                    textBox2.Text = data.original;
                 }
 
                 //レスポンスの終了？
@@ -77,5 +91,6 @@ namespace EgsApp
             public string shorten { get; set; }
             public string original { get; set; }
         }
+
     }
 }
