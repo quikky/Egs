@@ -4,6 +4,10 @@ using System.Windows;
 using System.Net;
 using System.Web;
 using System.Text;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 
 namespace EgsApp
 {
@@ -37,10 +41,22 @@ namespace EgsApp
                 response = (HttpWebResponse)req.GetResponse();
                 Stream resStream = response.GetResponseStream();
                 StreamReader sr = new StreamReader(resStream);
-                string EgsData = sr.ReadToEnd();
+                var EgsData = sr.ReadToEnd();
+
+                //EgsDataをJSONパース
+                var result = new DataContractJsonSerializer(typeof(RootObject));
+                using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(EgsData)))
+                    {
+                    //出力
+                    var data = (RootObject)result.ReadObject(ms);
+                    Console.WriteLine(data.shorten);
+                    Console.WriteLine(data.original);
+                    label1.Content  = "短縮URL：" + data.shorten   + "\r\n";
+                    label1.Content += "展開URL：" + data.original  + "\r\n";
+                }
+
+                //レスポンスの終了？
                 sr.Close();
-                Console.WriteLine(EgsData);
-                label1.Content = EgsData.ToString();
                 resStream.Close();
 
             }
@@ -56,6 +72,10 @@ namespace EgsApp
             }
         }
 
-
+        public class RootObject
+        {
+            public string shorten { get; set; }
+            public string original { get; set; }
+        }
     }
 }
