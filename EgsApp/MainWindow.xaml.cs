@@ -27,6 +27,7 @@ namespace EgsApp
             if ((bool)checkBox1.IsChecked)
             {
                 // Clipboard 監視する
+                textBox2.Text =  (string)Clipboard.GetDataObject().GetData(DataFormats.Text);
             }
             else
             {
